@@ -11,7 +11,7 @@ const VIRT_NUM = (1 << 6) - 1
 const CAPACITY  = 1 << 18
 
 type Node struct {
-	value  string
+	Value  string
 	bucket *bucket
 }
 
@@ -48,7 +48,7 @@ func (node *Node) Hash(serial uint16) uint32 {
 	//md5Sum := md5.Sum([]byte(node.value + "#" + strconv.Itoa(int(serial))))
 	//h, _ := strconv.ParseUint(hex.EncodeToString(md5Sum[:])[0:8], 16, 64)
 	//return uint32(h % CAPACITY)
-	return crc32.ChecksumIEEE([]byte(node.value + "#" + strconv.Itoa(int(serial)))) % CAPACITY
+	return crc32.ChecksumIEEE([]byte(node.Value + "#" + strconv.Itoa(int(serial)))) % CAPACITY
 }
 
 func (v *VirtualNode) Hash() uint32 {
@@ -61,7 +61,7 @@ func (v *VirtualNode) Hash() uint32 {
 }
 
 func (v *VirtualNode) Value() string {
-	return v.node.value
+	return v.node.Value
 }
 
 func (v0 *VirtualNode) Equal(v1 *VirtualNode) bool {
